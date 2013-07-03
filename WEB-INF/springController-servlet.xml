@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+	<bean name="/DB.act"
+		class="org.toilelibre.libe.youstream.controller.DBController">
+	</bean>
+
+	<bean name="/AdminSection.act"
+		class="org.toilelibre.libe.youstream.controller.AdminSectionController">
+	</bean>
+
+	<bean name="/Invite.act"
+		class="org.toilelibre.libe.youstream.controller.InviteController">
+	</bean>
+
+	<bean name="/Listen.act"
+		class="org.toilelibre.libe.youstream.controller.ListenController">
+	</bean>
+
+	<bean name="/Music.act"
+		class="org.toilelibre.libe.youstream.controller.MusicController">
+	</bean>
+
+	<bean name="/Notifications.act"
+		class="org.toilelibre.libe.youstream.controller.NotificationsController">
+	</bean>
+
+	<bean name="/Playlist.act"
+		class="org.toilelibre.libe.youstream.controller.PlaylistController">
+	</bean>
+
+	<bean name="/Search.act"
+		class="org.toilelibre.libe.youstream.controller.SearchController">
+	</bean>
+
+	<bean name="/XmlPlaylistMP3.act"
+		class="org.toilelibre.libe.youstream.controller.XmlPlaylistMP3Controller">
+	</bean>
+
+	<bean name="/UI.act"
+		class="org.toilelibre.libe.youstream.controller.YouStreamController">
+	</bean>
+
+	<context:spring-configured />
+	<context:annotation-config />
+	<context:component-scan base-package="org.toilelibre.libe.youstream" />
+
+	<bean id="emFactoryValue" class="java.lang.String">
+		<constructor-arg>
+			<value>YouStream-PU</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="emf" class="org.toilelibre.libe.youstream.entity.EMF">
+		<property name="factoryName" ref="emFactoryValue"></property>
+	</bean>
+
+	<bean id="emPersistenceFactory" class="javax.persistence.EntityManagerFactory"
+		factory-bean="emf" factory-method="get">
+	</bean>
+
+	<bean id="emObject" class="javax.persistence.EntityManager"
+		factory-bean="emPersistenceFactory" factory-method="createEntityManager">
+	</bean>
+	
+	
+	<bean id="categorieSessionBean" autowire="byName"
+		class="org.toilelibre.libe.youstream.session.CategorieSessionBean">
+		<property name="em" ref="emObject"></property>
+	</bean>
+
+	<bean id="invitationSessionBean" autowire="byName"
+		class="org.toilelibre.libe.youstream.session.InvitationSessionBean">
+		<property name="em" ref="emObject"></property>
+	</bean>
+
+	<bean id="musiqueSessionBean" autowire="byName"
+		class="org.toilelibre.libe.youstream.session.MusiqueSessionBean">
+		<property name="em" ref="emObject"></property>
+	</bean>
+
+	<bean id="notificationSessionBean" autowire="byName"
+		class="org.toilelibre.libe.youstream.session.NotificationSessionBean">
+		<property name="em" ref="emObject"></property>
+	</bean>
+
+	<bean id="playlistSessionBean" autowire="byName"
+		class="org.toilelibre.libe.youstream.session.PlaylistSessionBean">
+		<property name="em" ref="emObject"></property>
+	</bean>
+
+	<bean id="utilisateurSessionBean" autowire="byName"
+		class="org.toilelibre.libe.youstream.session.UtilisateurSessionBean">
+		<property name="em" ref="emObject"></property>
+	</bean>
+
+	<context:component-scan base-package="org.springbyexample.web.gwt.server" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	</bean>
+
+	<!-- Enables annotated POJO @Controllers -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<!-- Enables plain Controllers -->
+	<bean
+		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+
+	<bean id="viewResolver"
+		class=" org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/war/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+</beans>

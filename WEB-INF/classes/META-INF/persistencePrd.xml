@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="YouStream-PU"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>org.toilelibre.libe.youstream.model.Categorie</class>
+		<class>org.toilelibre.libe.youstream.model.EntreePlaylist</class>
+		<class>org.toilelibre.libe.youstream.model.Invitation</class>
+		<class>org.toilelibre.libe.youstream.model.MP3</class>
+		<class>org.toilelibre.libe.youstream.model.Musique</class>
+		<class>org.toilelibre.libe.youstream.model.Notification</class>
+		<class>org.toilelibre.libe.youstream.model.Playlist</class>
+		<class>org.toilelibre.libe.youstream.model.Utilisateur</class>
+		<properties>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
+			
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://172.30.48.23:3306/dbc3cc73ccd584f018d9f0d8f122bd185" />
+			<property name="javax.persistence.jdbc.user" value="uh1TBe1DrYSwf" />
+			<property name="javax.persistence.jdbc.password" value="pLqrzoL2MDmOZ" />
+ 
+			<property name="eclipselink.jdbc.read-connections.min" value="1" />
+			<property name="eclipselink.jdbc.write-connections.min" value="1" />
+			<property name="eclipselink.jdbc.batch-writing" value="JDBC" />
+ 
+			<!-- Logging -->
+			<property name="eclipselink.logging.level" value="FINE"/>
+			<property name="eclipselink.logging.timestamp" value="false" />
+			<property name="eclipselink.logging.session" value="false" />
+			<property name="eclipselink.logging.thread" value="false" />
+			
+		</properties>
+	</persistence-unit>
+</persistence>

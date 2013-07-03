@@ -1,0 +1,5 @@
+<Context path="/YouStream">
+  <Valve className="org.apache.catalina.valves.AccessLogValve"
+         prefix="localhost_access_log." suffix=".txt"
+         pattern="common"/>
+</Context>

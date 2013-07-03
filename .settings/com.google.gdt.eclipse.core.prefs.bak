@@ -1,0 +1,6 @@
+#Fri Dec 17 23:31:03 CET 2010
+eclipse.preferences.version=1
+jarsExcludedFromWebInfLib=/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/commons-fileupload-1.2.2.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/commons-httpclient-3.1.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/commons-io-2.0.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/commons-logging-1.1.1.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/ejb-3_0-api.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/jid3lib-0.5.4.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/org.springframework.beans-3.0.5.RELEASE.jar|/home/lionel/Documents/workspace/YouStream/war/WEB-INF/lib/org.springframework.core-3.0.5.RELEASE.jar
+launchConfigExternalUrlPrefix=
+warSrcDir=war
+warSrcDirIsOutput=true

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+<wb-module deploy-name="YouStream">
+<wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+<wb-resource deploy-path="/WEB-INF" source-path="/WEB-INF"/>
+<wb-resource deploy-path="/jsp" source-path="/jsp"/>
+<wb-resource deploy-path="/swf" source-path="/swf"/>
+<wb-resource deploy-path="/images" source-path="/images"/>
+<property name="java-output-path" value="WEB-INF/classes"/>
+<property name="context-root" value="/YouStream"/>
+</wb-module>
+</project-modules>

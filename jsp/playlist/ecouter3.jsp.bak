@@ -1,0 +1,100 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%if (request.getParameter("nocanvas") == null){%>
+<%@include file="/jsp/include/template.jsp" %>
+<%}%>
+<script type="text/javascript">
+
+    function buildPlaylist (){
+        var ulPlaylist = document.createElement ("ul");
+        var dndSource = new dojo.dnd.Source (ulPlaylist, {copyOnly:true});
+        ulPlaylist.id = "plContentUl";
+        var liHeadPlaylist = document.createElement ("li");
+        liHeadPlaylist.className = "head";
+        var liHead1Div = document.createElement ("div");
+        liHeadPlaylist.appendChild (liHead1Div);
+        liHead1Div.innerHTML = "#";
+        var liHead2Div = document.createElement ("div");
+        liHeadPlaylist.appendChild (liHead2Div);
+        liHead2Div.innerHTML = "Artiste";
+        var liHead3Div = document.createElement ("div");
+        liHeadPlaylist.appendChild (liHead3Div);
+        liHead3Div.innerHTML = "Titre";
+        var liHead4Div = document.createElement ("div");
+        liHeadPlaylist.appendChild (liHead4Div);
+        liHead4Div.innerHTML = "Année";
+        var liHead5Div = document.createElement ("div");
+        liHeadPlaylist.appendChild (liHead5Div);
+        liHead5Div.innerHTML = "Catégorie";
+
+        ulPlaylist.appendChild (liHeadPlaylist);
+
+        var b = false;
+        var liEntry;
+        var liEntryDiv;
+        var liEntryDivDiv1;
+        var liEntryDivDiv2;
+        var liEntryDivDiv3;
+        var liEntryDivDiv4;
+        var liEntryDivDiv5;
+        var dndTargetItem;
+            <c:forEach var="ep" items="${requestScope['liste']}">
+            liEntry = document.createElement ("li");
+        dndTargetItem = new dojo.dnd.Source (liEntry);
+        ulPlaylist.appendChild (liEntry);
+        liEntry.className = "notselected indispo${ep.musique.indisponible} dojoDndItem";
+        /*liEntry.onmousedown = function (e){
+            selectedDragMusic=${ep.musique.id};
+            selectedDragPosition=${ep.numeroApparition};
+        };*/
+        liEntry.id = "music${ep.numeroApparition}";
+        liEntryDiv = document.createElement ("div");
+        liEntry.appendChild (liEntryDiv);
+        liEntryDiv.id = "mp3${ep.musique.id}";
+        liEntryDiv.className = (b?"odd":"even");
+        liEntryDiv.onclick = function (e){
+            changeSelectedMusic(${ep.numeroApparition}, ${ep.musique.id});
+        }
+        liEntryDivDiv1 = document.createElement ("div");
+        liEntryDiv.appendChild (liEntryDivDiv1);
+        liEntryDivDiv1.innerHTML = "${ep.numeroApparition}&nbsp;";
+        liEntryDivDiv2 = document.createElement ("div");
+        liEntryDiv.appendChild (liEntryDivDiv2);
+        liEntryDivDiv2.innerHTML = "${ep.musique.artiste.replaceAll ("\"", "''").replace(0, ' ')}&nbsp;";
+        liEntryDivDiv3 = document.createElement ("div");
+        liEntryDiv.appendChild (liEntryDivDiv3);
+        liEntryDivDiv3.innerHTML = "${ep.musique.titre.replaceAll ("\"", "''").replace(0, ' ')}&nbsp;";
+        liEntryDivDiv4 = document.createElement ("div");
+        liEntryDiv.appendChild (liEntryDivDiv4);
+        liEntryDivDiv4.innerHTML = "${ep.musique.annee}&nbsp;";
+        liEntryDivDiv5 = document.createElement ("div");
+        liEntryDiv.appendChild (liEntryDivDiv5);
+        liEntryDivDiv5.innerHTML = "${ep.musique.categorie.nom.replaceAll ("\"", "''").replace(0, ' ')}&nbsp;";
+        b = !b;
+            </c:forEach>
+            return ulPlaylist;
+    }
+
+    for (var i = 0 ; i < dojo.byId ('musiquesContent').childNodes.length ; i++){
+        elem = dojo.byId ('musiquesContent').childNodes [i];
+        dojo.byId ('musiquesContent').removeChild (elem);
+    }
+    dojo.byId ('musiquesContent').appendChild (buildPlaylist ());
+
+    dojo.byId ('titleList').innerHTML = "${requestScope['nomPlaylist']}";
+    window.setTimeout (function (){
+        dojo.parser.parse ();
+    }, 0);
+
+    if ('${requestScope['sp']}' != '${requestScope['plId']}'){
+        var dewplayerElem = dojo.byId ('dewplayer');
+        var dewplayerElemSibling = dewplayerElem.nextSibling;
+        var dewplayerElemParent = dewplayerElem.parentNode;
+        dewplayerElemParent.removeChild (dewplayerElem);
+        var divDewplayer = document.createElement ("div");
+        divDewplayer.id = "dewplayer_content";
+        divDewplayer.innerHTML = "&nbsp;"
+        dewplayerElemParent.insertBefore (divDewplayer, dewplayerElemSibling);
+    }
+
+</script>
+<%@include file="/jsp/include/dewplayer.jsp" %>
